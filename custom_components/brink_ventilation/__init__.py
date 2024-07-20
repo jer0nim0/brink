@@ -103,6 +103,7 @@ async def async_get_devices(hass: HomeAssistant, entry: ConfigEntry, brink_clien
         system["ventilation"] = description["ventilation"]
         system["mode"] = description["mode"]
         system["filters_need_change"] = description["filters_need_change"]
+        system["bypass"] = description["bypass"]
 
     hass.data[DOMAIN][entry.entry_id][DATA_DEVICES] = systems
 
