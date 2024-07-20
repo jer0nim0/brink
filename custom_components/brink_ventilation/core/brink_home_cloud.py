@@ -121,7 +121,9 @@ class BrinkHomeCloud:
         ventilation = self.__find(parameters, "uiId", "Lüftungsstufe")
         mode = self.__find(parameters, "uiId", "Betriebsart")
         filters_need_change = self.__find(parameters, "uiId", "Status Filtermeldung")
-        bypass = self.__find(parameters, "uiId", "Status Bypassklappe")
+        info_page = pages[1]
+        parameters = info_page.get("parameterDescriptors", [])
+        bypass = self.__find(parameters, "name", "Status Bypassklappe")
 
 
         description_result = {
