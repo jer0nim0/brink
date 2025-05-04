@@ -106,6 +106,7 @@ class BrinkHomeCloud:
 
         response = await self._api_call(url, "GET")
         result = await response.json()
+        # print(result)
 
         _LOGGER.debug(
             "Response result: %s",
@@ -120,12 +121,16 @@ class BrinkHomeCloud:
         ventilation = self.__find(parameters, "uiId", "Lüftungsstufe")
         mode = self.__find(parameters, "uiId", "Betriebsart")
         filters_need_change = self.__find(parameters, "uiId", "Status Filtermeldung")
+        info_page = pages[1]
+        parameters = info_page.get("parameterDescriptors", [])
+        bypass = self.__find(parameters, "name", "Status Bypassklappe")
 
 
         description_result = {
             "ventilation": self.__get_type(ventilation),
             "mode": self.__get_type(mode),
-            "filters_need_change": self.__get_type(filters_need_change)
+            "filters_need_change": self.__get_type(filters_need_change),
+            "bypass": self.__get_type(bypass)
         }
 
         _LOGGER.debug(
